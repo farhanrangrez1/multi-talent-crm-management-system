@@ -1,0 +1,50 @@
+/* Sidebar color palette */
+:root {
+  --sidebar-bg: #2B4B37;
+  --sidebar-btn-active: #5E936C;
+  --sidebar-btn-hover: #5E936C;
+  --sidebar-btn-text: #E8FFD7;
+  --sidebar-btn-active-text: #ffffff;
+  --sidebar-btn-inactive-text: #E8FFD7;
+  --sidebar-btn-active-border: #E8FFD7;
+  --sidebar-divider: #93DA97;
+}
+
+.sidebar-main {
+  background: var(--sidebar-bg) !important;
+  color: var(--sidebar-btn-text) !important;
+}
+
+.sidebar-main .nav-link {
+  color: var(--sidebar-btn-text) !important;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-main .nav-link.active,
+.sidebar-main .nav-link[aria-current="page"] {
+  background: var(--sidebar-btn-active) !important;
+  color: var(--sidebar-btn-active-text) !important;
+  border-left: 4px solid var(--sidebar-btn-active-border);
+}
+
+.sidebar-main .nav-link:hover {
+  background: var(--sidebar-btn-hover) !important;
+  color: #fff !important;
+}
+
+.sidebar-main .nav-item .active-indicator {
+  background: var(--sidebar-btn-active-border) !important;
+}
+
+.sidebar-main .sidebar-user-profile {
+  border-top: 1px solid var(--sidebar-divider);
+}
+
+.sidebar-main .dropdown-item {
+  color: var(--sidebar-btn-text) !important;
+}
+
+.sidebar-main .dropdown-item:hover {
+  background: var(--sidebar-btn-hover) !important;
+  color: #fff !important;
+} 

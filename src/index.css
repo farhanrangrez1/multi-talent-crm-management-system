@@ -1,0 +1,80 @@
+/* Dashboard Card Styles */
+.dashboard-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 8px 0 rgba(16,30,54,0.06);
+  background: var(--secondary-bg) !important;
+  border: 1.5px solid var(--accent) !important;
+  color: var(--highlight) !important;
+  padding: 24px 20px;
+  transition: box-shadow 0.2s;
+}
+.dashboard-card:hover {
+  box-shadow: 0 4px 16px 0 rgba(16,30,54,0.10);
+  background: var(--accent) !important;
+  color: var(--primary-bg) !important;
+}
+.dashboard-card .card-title, .dashboard-card .card-value, .dashboard-card .card-desc {
+  color: var(--highlight) !important;
+}
+.dashboard-card .card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+.dashboard-card .card-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+.dashboard-card .card-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Dashboard Section Heading */
+.dashboard-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+/* Quick Action Button */
+.quick-action-btn {
+  min-height: 90px;
+  background: var(--accent) !important;
+  color: var(--text-dark) !important;
+  font-weight: 500;
+  border: 1.5px solid var(--highlight) !important;
+  border-radius: 12px;
+  transition: box-shadow 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 8px;
+}
+.quick-action-btn:hover {
+  background: var(--highlight) !important;
+  color: var(--primary-bg) !important;
+  border: 1.5px solid var(--accent) !important;
+}
+.quick-action-btn .quick-action-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+.quick-action-btn .quick-action-desc {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Muted Text */
+.text-muted {
+  color: var(--highlight) !important;
+}

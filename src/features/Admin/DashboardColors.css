@@ -1,0 +1,68 @@
+/* Dashboard color palette */
+:root {
+  --dashboard-bg: #E8FFD7;              /* Light background */
+  --dashboard-card-bg: #ffffff;         /* Clean white cards */
+  --dashboard-card-hover: #F3FFF0;      /* Subtle green tint on hover */
+  --dashboard-text: #3E5F44;            /* Dark green for text */
+  --dashboard-title: #2B4B37;           /* Deeper green for headings */
+  --dashboard-border: #93DA97;          /* Soft green borders */
+  --dashboard-badge: #2B4B37;          /* Mid green for labels/badges */
+}
+
+
+
+.dashboard-main {
+  background: var(--dashboard-bg) !important;
+  color: var(--dashboard-text) !important;
+  min-height: 100vh;
+}
+
+.dashboard-section-title {
+  color: var(--dashboard-title) !important;
+}
+
+.dashboard-card {
+  background: var(--dashboard-card-bg) !important;
+  color: var(--dashboard-text) !important;
+  border: 1px solid var(--dashboard-border) !important;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px 0 rgba(165,56,96,0.10);
+  padding: 24px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* .dashboard-card:hover {
+  background: var(--dashboard-card-hover) !important;
+  color: #fff !important;
+} */
+
+.card-title, .card-value, .card-desc {
+  color: var(--dashboard-text) !important;
+}
+
+.breadcrumb-item.active {
+  color: var(--dashboard-title) !important;
+}
+
+.breadcrumb-item a {
+  color: var(--dashboard-badge) !important;
+}
+
+.badge {
+  background: var(--dashboard-badge) !important;
+  color: var(--dashboard-bg) !important;
+}
+
+.quick-action-btn {
+  background: var(--dashboard-card-hover) !important;
+  border-radius: 12px;
+  padding: 16px 12px;
+  border: none;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.quick-action-btn:hover {
+  background: var(--dashboard-bg) !important;
+  color: var(--dashboard-badge) !important;
+} 
