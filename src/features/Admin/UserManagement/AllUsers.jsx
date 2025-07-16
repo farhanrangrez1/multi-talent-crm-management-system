@@ -35,7 +35,7 @@ function AllUsers() {
   return (
     <div className="container-fluid py-4 px-2 px-md-4" style={{ fontFamily: 'Inter, sans-serif', background: '#f7f9fb', minHeight: '100vh' }}>
       {/* Header */}
-      <div className="bg-white rounded-top-4 px-4 pt-4 pb-0 mb-0 shadow-sm d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div className=" px-4 pt-4 pb-0 mb-0  d-flex justify-content-between align-items-center flex-wrap gap-2">
         <div>
           <h3 className="fw-bold mb-1" style={{ fontSize: 28, color: '#222' }}>All Users</h3>
           <div className="text-muted" style={{ fontSize: 15 }}>Complete overview of all registered users</div>
@@ -43,40 +43,49 @@ function AllUsers() {
         <button className="btn btn-primary d-flex align-items-center gap-2 px-4 py-2 rounded-3 fw-medium" style={{ fontSize: 15, background: '#2563eb', border: 'none' }}>
           <FaUser className="me-1" /> Manage Users
         </button>
-      </div>
+     
       {/* Summary Cards */}
-      <div className="bg-white rounded-bottom-4 shadow-sm px-4 pt-3 pb-4 mb-4 row g-3" style={{ marginTop: '-2px' }}>
-        <div className="col-6 col-md-3">
-          <div className="d-flex flex-column align-items-center justify-content-center bg-light rounded-3 py-3 h-100" style={{ background: '#f7f9fb' }}>
-            <div className="rounded-3 d-flex align-items-center justify-content-center mb-2" style={{ background: '#eef2ff', color: '#2563eb', width: 38, height: 38 }}><FaUser /></div>
-            <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.total}</div>
-            <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Total Users</div>
+      <div className="d-flex flex-wrap gap-4 my-4">
+        <div className="flex-grow-1" style={{ minWidth: 230, maxWidth: 250 }}>
+          <div className="dashboard-card bg-white rounded-4 shadow-sm p-3 d-flex align-items-center gap-3 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-circle" style={{ background: '#eef2ff', color: '#2563eb', width: 40, height: 40, fontSize: 20 }}><FaUser /></div>
+            <div>
+              <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.total}</div>
+              <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Total Users</div>
+            </div>
           </div>
         </div>
-        <div className="col-6 col-md-3">
-          <div className="d-flex flex-column align-items-center justify-content-center bg-light rounded-3 py-3 h-100" style={{ background: '#f7f9fb' }}>
-            <div className="rounded-3 d-flex align-items-center justify-content-center mb-2" style={{ background: '#ecfdf5', color: '#22c55e', width: 38, height: 38 }}><FaCheckCircle /></div>
-            <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.active}</div>
-            <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Active Users</div>
+        <div className="flex-grow-1" style={{ minWidth: 227, maxWidth: 250 }}>
+          <div className="dashboard-card bg-white rounded-4 shadow-sm p-3 d-flex align-items-center gap-3 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-circle" style={{ background: '#d1fae5', color: '#22c55e', width: 40, height: 40, fontSize: 20 }}><FaCheckCircle /></div>
+            <div>
+              <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.active}</div>
+              <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Active Users</div>
+            </div>
           </div>
         </div>
-        <div className="col-6 col-md-3">
-          <div className="d-flex flex-column align-items-center justify-content-center bg-light rounded-3 py-3 h-100" style={{ background: '#f7f9fb' }}>
-            <div className="rounded-3 d-flex align-items-center justify-content-center mb-2" style={{ background: '#f3f0ff', color: '#a78bfa', width: 38, height: 38 }}><FaUserTie /></div>
-            <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.buyers}</div>
-            <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Buyers</div>
+        <div className="flex-grow-1" style={{ minWidth: 227, maxWidth: 250 }}>
+          <div className="dashboard-card bg-white rounded-4 shadow-sm p-3 d-flex align-items-center gap-3 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-circle" style={{ background: '#f3f0ff', color: '#a78bfa', width: 40, height: 40, fontSize: 20 }}><FaUserTie /></div>
+            <div>
+              <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.buyers}</div>
+              <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Buyers</div>
+            </div>
           </div>
         </div>
-        <div className="col-6 col-md-3">
-          <div className="d-flex flex-column align-items-center justify-content-center bg-light rounded-3 py-3 h-100" style={{ background: '#f7f9fb' }}>
-            <div className="rounded-3 d-flex align-items-center justify-content-center mb-2" style={{ background: '#fff7ed', color: '#f59e42', width: 38, height: 38 }}><FaUserTag /></div>
-            <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.sellers}</div>
-            <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Sellers</div>
+        <div className="flex-grow-1" style={{ minWidth: 228, maxWidth: 260 }}>
+          <div className="dashboard-card bg-white rounded-4 shadow-sm p-3 d-flex align-items-center gap-3 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-circle" style={{ background: '#fff7ed', color: '#f59e42', width: 40, height: 40, fontSize: 20 }}><FaUserTag /></div>
+            <div>
+              <div className="fw-bold" style={{ fontSize: 22, color: '#222' }}>{summary.sellers}</div>
+              <div className="text-muted" style={{ fontSize: 15, fontWeight: 500 }}>Sellers</div>
+            </div>
           </div>
         </div>
+      </div>
       </div>
       {/* User Directory */}
-      <div className="bg-white rounded-4 shadow-sm px-4 pt-4 pb-3 mb-0">
+      <div className="dashboard-card bg-white rounded-4 shadow-sm px-4 pt-4 pb-3 mb-0 mt-4" style={{ border: '1.5px solid #d6f5c6', background: '#ffffff' }}>
         <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
           <div className="fw-semibold" style={{ fontSize: 18, color: '#222' }}>User Directory</div>
           <div className="d-flex align-items-center gap-2 position-relative">
@@ -98,7 +107,7 @@ function AllUsers() {
           <div className="row g-3">
             {filteredUsers.map((user, idx) => (
               <div className="col-12 col-md-6 col-lg-4" key={idx}>
-                <div className="bg-light rounded-3 shadow-sm p-3 h-100 d-flex flex-column gap-2" style={{ background: '#f7f9fb', minHeight: 170 }}>
+                <div className="dashboard-card bg-light rounded-3 shadow-sm p-3 h-100 d-flex flex-column gap-2" style={{ background: '#eaffd6', minHeight: 170, border: '1.5px solid #d6f5c6' }}>
                   <div className="d-flex align-items-center gap-3 mb-1">
                     <div className="d-flex align-items-center justify-content-center rounded-circle" style={{ width: 44, height: 44, background: '#6366f1', color: '#fff', fontWeight: 600, fontSize: 18 }}>{user.initials}</div>
                     <div>
@@ -122,7 +131,7 @@ function AllUsers() {
           </div>
         ) : (
           <div className="table-responsive">
-            <table className="table table-hover align-middle">
+            <table className="table table-hover align-middle" style={{ background: '#ffffff', border: '1.5px solid #d6f5c6' }}>
               <thead>
                 <tr>
                   <th>User</th>

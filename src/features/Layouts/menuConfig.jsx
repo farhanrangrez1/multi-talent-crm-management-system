@@ -14,7 +14,7 @@ export const adminMenuItems = [
       { label: "All Plans", path: "/admin/plans/all" },
       { label: "Add Plan", path: "/admin/plans/add" },
     ]
-  },
+  }, 
   { icon: <FaTags />, label: "Coupons", path: "/admin/coupons" },
   { icon: <FaGlobe />, label: "Domain Control", path: "/admin/domains" },
   { icon: <FaReceipt />, label: "Payment Logs", path: "/admin/payments" },

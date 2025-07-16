@@ -1,18 +1,7 @@
+
 /* Dashboard Card Styles */
-.dashboard-card {
-  border-radius: 16px;
-  box-shadow: 0 2px 8px 0 rgba(16,30,54,0.06);
-  background: var(--secondary-bg) !important;
-  border: 1.5px solid var(--accent) !important;
-  color: var(--highlight) !important;
-  padding: 24px 20px;
-  transition: box-shadow 0.2s;
-}
-.dashboard-card:hover {
-  box-shadow: 0 4px 16px 0 rgba(16,30,54,0.10);
-  background: var(--accent) !important;
-  color: var(--primary-bg) !important;
-}
+
+
 .dashboard-card .card-title, .dashboard-card .card-value, .dashboard-card .card-desc {
   color: var(--highlight) !important;
 }
@@ -22,6 +11,7 @@
   color: #64748b;
   margin-bottom: 4px;
 }
+
 .dashboard-card .card-value {
   font-size: 24px;
   font-weight: 700;
@@ -78,3 +68,5 @@
 .text-muted {
   color: var(--highlight) !important;
 }
+
+
