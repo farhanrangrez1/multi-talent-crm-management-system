@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { adminMenuItems } from "../Layouts/menuConfig"
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { FaThLarge, FaUsers, FaCreditCard, FaTags, FaGlobe, FaReceipt, FaChartBar, FaCog, FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./SidebarColors.css";
 
-
 const navLinks = [
   { icon: <FaThLarge />, label: "Dashboard", path: "/" },
   {
-    icon: <FaUsers />, label: "User Management", expandable: true, path: "/admin/users", subItems: [
+    icon: <FaUsers />, label: "User Management", expandable: true, subItems: [
       { label: "All Users", path: "/allUsers" },
       { label: "Buyers", path: "/buyers" },
       { label: "Sellers", path: "/sellers" },
     ]
   },
   {
-    icon: <FaCreditCard />, label: "Subscription Plans", expandable: true, path: "/admin/plans", subItems: [
-      { label: "All Plans", path: "/admin/plans/all" },
+    icon: <FaCreditCard />, label: "Subscription Plans", expandable: true, subItems: [
+      { label: "All Plans", path: "/AllPlans" },
       { label: "Add Plan", path: "/admin/plans/add" },
     ]
   },
-  { icon: <FaTags />, label: "Coupons", path: "/admin/coupons" },
-  { icon: <FaGlobe />, label: "Domain Control", path: "/admin/domains" },
-  { icon: <FaReceipt />, label: "Payment Logs", path: "/admin/payments" },
-  { icon: <FaChartBar />, label: "Reports & Analytics", path: "/admin/reports" },
-  { icon: <FaCog />, label: "Admin Settings", path: "/admin/settings" },
+  { icon: <FaTags />, label: "Coupons", path: "/CouponManagement" },
+  { icon: <FaGlobe />, label: "Domain Control", path: "/domain" },
+  { icon: <FaReceipt />, label: "Payment Logs", path: "/Payment" },
+  { icon: <FaChartBar />, label: "Reports & Analytics", path: "/reports" },
+  { icon: <FaCog />, label: "Admin Settings", path: "/settings" },
 ];
 function Shidebar({ show, onClose }) {
   const [active, setActive] = useState("Dashboard");
@@ -94,11 +92,11 @@ function Shidebar({ show, onClose }) {
             <MdOutlineAdminPanelSettings />
           </span>
           {!collapsed && (
-          <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>Admin Panel</span>
+            <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>Admin Panel</span>
           )}
         </a>
         {!collapsed && (
-        <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management System</span>
+          <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management System</span>
         )}
         <ul className="nav nav-pills flex-column mb-auto gap-1" style={{ marginTop: 8 }}>
           {navLinks.map((item, idx) => (
@@ -169,17 +167,17 @@ function Shidebar({ show, onClose }) {
                       {item.icon}
                     </span>
                     {!collapsed && (
-                    <span
-                      style={{
-                        fontWeight: active === item.label ? 600 : 500,
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        transition: 'color 0.2s',
-                      }}
-                    >
-                      {item.label}
-                    </span>
+                      <span
+                        style={{
+                          fontWeight: active === item.label ? 600 : 500,
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          transition: 'color 0.2s',
+                        }}
+                      >
+                        {item.label}
+                      </span>
                     )}
                   </span>
                   {item.expandable && !collapsed && (
@@ -198,42 +196,42 @@ function Shidebar({ show, onClose }) {
                     transition: 'max-height 0.3s cubic-bezier(0.4,0,0.2,1)',
                   }}
                 >
-                <ul style={{ listStyle: 'none', paddingLeft: 36, margin: 0 }}>
-                  {item.subItems.map(sub => (
-                    <li key={sub.label}>
-                      <Link
-                        to={sub.path}
-                        className="nav-link d-flex align-items-center rounded-3 px-2 py-1"
-                        style={{
-                          background: active === sub.label ? activeBg : 'transparent',
-                          color: active === sub.label ? activeText : inactiveText,
-                          fontWeight: active === sub.label ? 600 : 500,
-                          fontSize: 15,
-                          marginBottom: 2,
-                          transition: 'background 0.2s, color 0.2s',
-                          cursor: 'pointer',
-                          borderRadius: 8,
-                          paddingLeft: 8,
-                        }}
-                        onClick={() => setActive(sub.label)}
-                        onMouseOver={e => {
-                          if (active !== sub.label) {
-                            e.currentTarget.style.background = hoverBg;
-                            e.currentTarget.style.color = hoverIcon;
-                          }
-                        }}
-                        onMouseOut={e => {
-                          if (active !== sub.label) {
-                            e.currentTarget.style.background = 'transparent';
-                            e.currentTarget.style.color = inactiveText;
-                          }
-                        }}
-                      >
-                        {sub.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                  <ul style={{ listStyle: 'none', paddingLeft: 36, margin: 0 }}>
+                    {item.subItems.map(sub => (
+                      <li key={sub.label}>
+                        <Link
+                          to={sub.path}
+                          className="nav-link d-flex align-items-center rounded-3 px-2 py-1"
+                          style={{
+                            background: active === sub.label ? activeBg : 'transparent',
+                            color: active === sub.label ? activeText : inactiveText,
+                            fontWeight: active === sub.label ? 600 : 500,
+                            fontSize: 15,
+                            marginBottom: 2,
+                            transition: 'background 0.2s, color 0.2s',
+                            cursor: 'pointer',
+                            borderRadius: 8,
+                            paddingLeft: 8,
+                          }}
+                          onClick={() => setActive(sub.label)}
+                          onMouseOver={e => {
+                            if (active !== sub.label) {
+                              e.currentTarget.style.background = hoverBg;
+                              e.currentTarget.style.color = hoverIcon;
+                            }
+                          }}
+                          onMouseOut={e => {
+                            if (active !== sub.label) {
+                              e.currentTarget.style.background = 'transparent';
+                              e.currentTarget.style.color = inactiveText;
+                            }
+                          }}
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </React.Fragment>
@@ -264,8 +262,8 @@ function Shidebar({ show, onClose }) {
           </div>
           {!collapsed && (
             <div style={{ position: 'relative' }}>
-            <div className="fw-semibold" style={{ fontSize: 15, color: '#222', fontWeight: 600 }}>Admin User</div>
-            <div className="text-muted small" style={{ fontSize: 13, color: '#94a3b8' }}>System Administrator</div>
+              <div className="fw-semibold" style={{ fontSize: 15, color: '#222', fontWeight: 600 }}>Admin User</div>
+              <div className="text-muted small" style={{ fontSize: 13, color: '#94a3b8' }}>System Administrator</div>
               {profileOpen && (
                 <div style={{
                   position: 'absolute',
@@ -284,7 +282,7 @@ function Shidebar({ show, onClose }) {
                   <button className="dropdown-item" style={{ display: 'block', padding: '6px 0', color: '#e11d48', background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}>Logout</button>
                 </div>
               )}
-          </div>
+            </div>
           )}
         </div>
       </div>
@@ -340,11 +338,11 @@ function Shidebar({ show, onClose }) {
             <MdOutlineAdminPanelSettings />
           </span>
           {!collapsed && (
-          <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>Admin Panel</span>
+            <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>Admin Panel</span>
           )}
         </a>
         {!collapsed && (
-        <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management System</span>
+          <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management System</span>
         )}
         <ul className="nav nav-pills flex-column mb-auto gap-1" style={{ marginTop: 8 }}>
           {navLinks.map((item, idx) => (
@@ -415,17 +413,17 @@ function Shidebar({ show, onClose }) {
                       {item.icon}
                     </span>
                     {!collapsed && (
-                    <span
-                      style={{
-                        fontWeight: active === item.label ? 600 : 500,
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        transition: 'color 0.2s',
-                      }}
-                    >
-                      {item.label}
-                    </span>
+                      <span
+                        style={{
+                          fontWeight: active === item.label ? 600 : 500,
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          transition: 'color 0.2s',
+                        }}
+                      >
+                        {item.label}
+                      </span>
                     )}
                   </span>
                   {item.expandable && !collapsed && (
@@ -444,42 +442,42 @@ function Shidebar({ show, onClose }) {
                     transition: 'max-height 0.3s cubic-bezier(0.4,0,0.2,1)',
                   }}
                 >
-                <ul style={{ listStyle: 'none', paddingLeft: 36, margin: 0 }}>
-                  {item.subItems.map(sub => (
-                    <li key={sub.label}>
-                      <Link
-                        to={sub.path}
-                        className="nav-link d-flex align-items-center rounded-3 px-2 py-1"
-                        style={{
-                          background: active === sub.label ? activeBg : 'transparent',
-                          color: active === sub.label ? activeText : inactiveText,
-                          fontWeight: active === sub.label ? 600 : 500,
-                          fontSize: 15,
-                          marginBottom: 2,
-                          transition: 'background 0.2s, color 0.2s',
-                          cursor: 'pointer',
-                          borderRadius: 8,
-                          paddingLeft: 8,
-                        }}
-                        onClick={() => setActive(sub.label)}
-                        onMouseOver={e => {
-                          if (active !== sub.label) {
-                            e.currentTarget.style.background = hoverBg;
-                            e.currentTarget.style.color = hoverIcon;
-                          }
-                        }}
-                        onMouseOut={e => {
-                          if (active !== sub.label) {
-                            e.currentTarget.style.background = 'transparent';
-                            e.currentTarget.style.color = inactiveText;
-                          }
-                        }}
-                      >
-                        {sub.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                  <ul style={{ listStyle: 'none', paddingLeft: 36, margin: 0 }}>
+                    {item.subItems.map(sub => (
+                      <li key={sub.label}>
+                        <Link
+                          to={sub.path}
+                          className="nav-link d-flex align-items-center rounded-3 px-2 py-1"
+                          style={{
+                            background: active === sub.label ? activeBg : 'transparent',
+                            color: active === sub.label ? activeText : inactiveText,
+                            fontWeight: active === sub.label ? 600 : 500,
+                            fontSize: 15,
+                            marginBottom: 2,
+                            transition: 'background 0.2s, color 0.2s',
+                            cursor: 'pointer',
+                            borderRadius: 8,
+                            paddingLeft: 8,
+                          }}
+                          onClick={() => setActive(sub.label)}
+                          onMouseOver={e => {
+                            if (active !== sub.label) {
+                              e.currentTarget.style.background = hoverBg;
+                              e.currentTarget.style.color = hoverIcon;
+                            }
+                          }}
+                          onMouseOut={e => {
+                            if (active !== sub.label) {
+                              e.currentTarget.style.background = 'transparent';
+                              e.currentTarget.style.color = inactiveText;
+                            }
+                          }}
+                        >
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </React.Fragment>
@@ -510,8 +508,8 @@ function Shidebar({ show, onClose }) {
           </div>
           {!collapsed && (
             <div style={{ position: 'relative' }}>
-            <div className="fw-semibold" style={{ fontSize: 15, color: '#222', fontWeight: 600 }}>Admin User</div>
-            <div className="text-muted small" style={{ fontSize: 13, color: '#94a3b8' }}>System Administrator</div>
+              <div className="fw-semibold" style={{ fontSize: 15, color: '#222', fontWeight: 600 }}>Admin User</div>
+              <div className="text-muted small" style={{ fontSize: 13, color: '#94a3b8' }}>System Administrator</div>
               {profileOpen && (
                 <div style={{
                   position: 'absolute',
@@ -530,7 +528,7 @@ function Shidebar({ show, onClose }) {
                   <button className="dropdown-item" style={{ display: 'block', padding: '6px 0', color: '#e11d48', background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}>Logout</button>
                 </div>
               )}
-          </div>
+            </div>
           )}
         </div>
       </div>

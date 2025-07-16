@@ -1,15 +1,13 @@
-/* Sidebar color palette */
 :root {
-  --sidebar-bg: #2B4B37;
+  --sidebar-bg: #3E5F44;
   --sidebar-btn-active: #5E936C;
-  --sidebar-btn-hover: #5E936C;
+  --sidebar-btn-hover: #93DA97;
   --sidebar-btn-text: #E8FFD7;
   --sidebar-btn-active-text: #ffffff;
   --sidebar-btn-inactive-text: #E8FFD7;
   --sidebar-btn-active-border: #E8FFD7;
   --sidebar-divider: #93DA97;
 }
-
 .sidebar-main {
   background: var(--sidebar-bg) !important;
   color: var(--sidebar-btn-text) !important;

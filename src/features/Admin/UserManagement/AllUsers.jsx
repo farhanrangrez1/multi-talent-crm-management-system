@@ -40,7 +40,7 @@ function AllUsers() {
           <h3 className="fw-bold mb-1" style={{ fontSize: 28, color: '#222' }}>All Users</h3>
           <div className="text-muted" style={{ fontSize: 15 }}>Complete overview of all registered users</div>
         </div>
-        <button className="btn btn-primary d-flex align-items-center gap-2 px-4 py-2 rounded-3 fw-medium" style={{ fontSize: 15, background: '#2563eb', border: 'none' }}>
+        <button id='bten' className="btn  d-flex align-items-center gap-2 px-4 py-2 rounded-3 fw-medium" style={{ fontSize: 15, }}>
           <FaUser className="me-1" /> Manage Users
         </button>
      
