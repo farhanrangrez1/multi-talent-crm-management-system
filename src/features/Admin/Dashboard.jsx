@@ -97,8 +97,8 @@ function Dashboard() {
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
       />
       <div
-        className="container-fluid py-4 dashboard-main"
-        style={{ fontFamily: "Inter, sans-serif" }}
+        className="container-fluid p-5 dashboard-main"
+        style={{ fontFamily:"Inter, sans-serif"}}
       >
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">

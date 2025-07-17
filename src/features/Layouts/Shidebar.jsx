@@ -3,33 +3,47 @@ import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { FaThLarge, FaUsers, FaCreditCard, FaTags, FaGlobe, FaReceipt, FaChartBar, FaCog, FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./SidebarColors.css";
+import {Admin, Seller} from "./menuConfig"
 
-const navLinks = [
-  { icon: <FaThLarge />, label: "Dashboard", path: "/" },
-  {
-    icon: <FaUsers />, label: "User Management", expandable: true, subItems: [
-      { label: "All Users", path: "/allUsers" },
-      { label: "Buyers", path: "/buyers" },
-      { label: "Sellers", path: "/sellers" },
-    ]
-  },
-  {
-    icon: <FaCreditCard />, label: "Subscription Plans", expandable: true, subItems: [
-      { label: "All Plans", path: "/AllPlans" },
-      { label: "Add Plan", path: "/admin/plans/add" },
-    ]
-  },
-  { icon: <FaTags />, label: "Coupons", path: "/CouponManagement" },
-  { icon: <FaGlobe />, label: "Domain Control", path: "/domain" },
-  { icon: <FaReceipt />, label: "Payment Logs", path: "/Payment" },
-  { icon: <FaChartBar />, label: "Reports & Analytics", path: "/reports" },
-  { icon: <FaCog />, label: "Admin Settings", path: "/settings" },
-];
+
+
 function Shidebar({ show, onClose }) {
   const [active, setActive] = useState("Dashboard");
   const [expanded, setExpanded] = useState(""); // Only one expanded at a time
   const [collapsed, setCollapsed] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [roleData, setRoleData] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Auto-set userRole based on path
+    if (location.pathname.startsWith("/seller/")) {
+      if (localStorage.getItem("userRole") !== "seller") {
+        localStorage.setItem("userRole", "seller");
+        setRoleData("seller");
+      } else {
+        setRoleData("seller");
+      }
+    } else if (location.pathname.startsWith("/admin/")) {
+      if (localStorage.getItem("userRole") !== "admin") {
+        localStorage.setItem("userRole", "admin");
+        setRoleData("admin");
+      } else {
+        setRoleData("admin");
+      }
+    } else {
+      // fallback: read from localStorage
+      setRoleData(localStorage.getItem("userRole"));
+    }
+  }, [location.pathname]);
+  
+  // Select menu based on role
+  let navLinks = [];
+  if (roleData === "admin") {
+    navLinks = Admin;
+  } else if (roleData === "seller") {
+    navLinks = Seller;
+  }
 
   const handleNavClick = (label, expandable) => {
     setActive(label);
@@ -54,6 +68,61 @@ function Shidebar({ show, onClose }) {
   // Sidebar width based on collapsed state
   const sidebarWidth = collapsed ? 72 : 270;
 
+
+
+
+
+
+
+
+
+
+  // ////////////\
+  const [openMenuIndex, setOpenMenuIndex] = useState(null);
+  const [activeMenuIndex, setActiveMenuIndex] = useState(null);
+  const [activeSubmenuPath, setActiveSubmenuPath] = useState(null);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!location) return;
+    let foundActiveMenuIndex = null;
+    let foundActiveSubmenuPath = null;
+
+    navLinks.forEach((item, i) => {
+      if (item.submenu) {
+        item.submenu.forEach((sub) => {
+          if (location.pathname === sub.path) {
+            foundActiveMenuIndex = i;
+            foundActiveSubmenuPath = sub.path;
+          }
+        });
+      } else if (location.pathname === item.path) {
+        foundActiveMenuIndex = i;
+        foundActiveSubmenuPath = null;
+      }
+    });
+
+    setActiveMenuIndex(foundActiveMenuIndex);
+    setActiveSubmenuPath(foundActiveSubmenuPath);
+    if (foundActiveMenuIndex !== null) {
+      setOpenMenuIndex(foundActiveMenuIndex);
+    } else {
+      setOpenMenuIndex(null);
+    }
+  }, [location.pathname, navLinks]);
+
+  const toggleMenu = (index) => {
+    setOpenMenuIndex(openMenuIndex === index ? null : index);
+  };
+  const handleMenuClick = (index, path, isSubmenu = false) => {
+    setActiveMenuIndex(index);
+    if (isSubmenu) {
+      setActiveSubmenuPath(path);
+    } else {
+      setActiveSubmenuPath(null);
+    }
+    navigate(path);
+  };
   return (
     <>
       {/* Overlay for mobile */}
@@ -92,11 +161,11 @@ function Shidebar({ show, onClose }) {
             <MdOutlineAdminPanelSettings />
           </span>
           {!collapsed && (
-            <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>Admin Panel</span>
+            <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>CRM Management</span>
           )}
         </a>
         {!collapsed && (
-          <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management System</span>
+          <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management</span>
         )}
         <ul className="nav nav-pills flex-column mb-auto gap-1" style={{ marginTop: 8 }}>
           {navLinks.map((item, idx) => (
@@ -330,7 +399,6 @@ function Shidebar({ show, onClose }) {
         </button>
         {/* Logo and Panel Title */}
         <a
-          href="/"
           className="d-flex align-items-center mb-4 text-decoration-none"
           style={{ gap: 14, justifyContent: collapsed ? 'center' : 'flex-start' }}
         >
@@ -338,11 +406,11 @@ function Shidebar({ show, onClose }) {
             <MdOutlineAdminPanelSettings />
           </span>
           {!collapsed && (
-            <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>Admin Panel</span>
+            <span className="fs-5 fw-bold" style={{ color: '#fff', letterSpacing: 0.2, fontWeight: 700, fontSize: 20 }}>CRM Management</span>
           )}
         </a>
         {!collapsed && (
-          <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management System</span>
+          <span className="text-muted small mb-4 ms-1" style={{ fontSize: 13, color: '#94a3b8', marginBottom: 18, display: 'block' }}>CRM Management</span>
         )}
         <ul className="nav nav-pills flex-column mb-auto gap-1" style={{ marginTop: 8 }}>
           {navLinks.map((item, idx) => (

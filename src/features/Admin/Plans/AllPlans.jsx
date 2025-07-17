@@ -182,7 +182,7 @@ const AllPlans = () => {
               <span><span style={{ marginRight: 6 }}>👥</span>{plan.subscribers} subscribers</span>
               <span>₹{plan.revenue.toLocaleString()}</span>
             </div>
-            <span style={{ position: 'absolute', top: 24, right: 24, background: plan.status === 'Active' ? '#e6f9f0' : '#fdeaea', color: plan.status === 'Active' ? '#22c55e' : '#ef4444', fontWeight: 600, fontSize: 13, borderRadius: 8, padding: '2px 10px', right: 24, top: 54 }}>{plan.status}</span>
+            <span style={{ position: 'absolute', top: 24, right: 24, background: plan.status === 'Active' ? '#e6f9f0' : '#fdeaea', color: plan.status === 'Active' ? '#22c55e' : '#ef4444', fontWeight: 600, fontSize: 13, borderRadius: 8, padding: '2px 10px' }}>{plan.status}</span>
           </div>
         ))}
       </div>

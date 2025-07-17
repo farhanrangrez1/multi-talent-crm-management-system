@@ -1366,3 +1366,370 @@ function GeneralSettings() {
 }
 
 export default GeneralSettings;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+message chat hai is code me 
+import React, { useState, useRef, useEffect } from 'react';
+
+function SellerDashboard() {
+  // Chat state
+  const [messages, setMessages] = useState([
+    { sender: 'bot', text: 'Hello! How can I help you today?' },
+    { sender: 'user', text: 'Hi, I have a question about my sales.' },
+    { sender: 'bot', text: 'Sure! Please ask your question.' },
+  ]);
+  const [input, setInput] = useState('');
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (input.trim() === '') return;
+    setMessages([...messages, { sender: 'user', text: input }]);
+    setInput('');
+    // Optionally, add a bot reply after a delay
+    setTimeout(() => {
+      setMessages(msgs => [...msgs, { sender: 'bot', text: 'Thank you for your message! (Demo reply)' }]);
+    }, 800);
+  };
+
+  return (
+    <div className="container-fluid py-4" style={{ background: '#f8fafc', minHeight: '100vh', position: 'relative' }}>
+      <div className="mb-3">
+        <h2 className="fw-bold">Dashboard Overview</h2>
+        <div className="text-muted">Monitor your sales performance and manage your business</div>
+      </div>
+      <div className="d-flex flex-wrap align-items-center justify-content-between mb-4">
+        <div></div>
+        <div className="d-flex align-items-center gap-2">
+          <select className="form-select form-select-sm" style={{ width: 120 }}>
+            <option>Last 7 days</option>
+            <option>Last 30 days</option>
+            <option>This Month</option>
+          </select>
+          <button className="btn btn-primary btn-sm">
+            <i className="bi bi-download me-1"></i> Export Report
+          </button>
+        </div>
+      </div>
+      <div className="row g-3 mb-4">
+        <div className="col-md-3">
+          <div className="card shadow-sm h-100">
+            <div className="card-body d-flex align-items-center">
+              <div className="bg-primary text-white rounded-3 p-3 me-3">
+                <i className="bi bi-person-plus fs-4"></i>
+              </div>
+              <div>
+                <div className="fs-5 fw-bold">1,247</div>
+                <div className="text-muted small">Total Leads</div>
+                <div className="text-success small fw-semibold mt-1">
+                  <i className="bi bi-arrow-up"></i> +12.5%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card shadow-sm h-100">
+            <div className="card-body d-flex align-items-center">
+              <div className="bg-success text-white rounded-3 p-3 me-3">
+                <i className="bi bi-chat-dots fs-4"></i>
+              </div>
+              <div>
+                <div className="fs-5 fw-bold">89</div>
+                <div className="text-muted small">Active Inquiries</div>
+                <div className="text-success small fw-semibold mt-1">
+                  <i className="bi bi-arrow-up"></i> +8.2%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card shadow-sm h-100">
+            <div className="card-body d-flex align-items-center">
+              <div className="bg-purple text-white rounded-3 p-3 me-3" style={{ background: '#a259ff' }}>
+                <i className="bi bi-bar-chart-line fs-4"></i>
+              </div>
+              <div>
+                <div className="fs-5 fw-bold">$45,230</div>
+                <div className="text-muted small">Monthly Sales</div>
+                <div className="text-success small fw-semibold mt-1">
+                  <i className="bi bi-arrow-up"></i> +15.3%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card shadow-sm h-100">
+            <div className="card-body d-flex align-items-center">
+              <div className="bg-warning text-white rounded-3 p-3 me-3">
+                <i className="bi bi-percent fs-4"></i>
+              </div>
+              <div>
+                <div className="fs-5 fw-bold">7.2%</div>
+                <div className="text-muted small">Conversion Rate</div>
+                <div className="text-danger small fw-semibold mt-1">
+                  <i className="bi bi-arrow-down"></i> -2.1%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row g-3 mb-4">
+        <div className="col-md-6">
+          <div className="card shadow-sm h-100">
+            <div className="card-body">
+              <div className="d-flex align-items-center mb-2">
+                <span className="fw-semibold">Revenue Trend</span>
+                <span className="ms-auto text-primary small"><i className="bi bi-dot"></i> Revenue</span>
+              </div>
+              {/* Chart Placeholder */}
+              <div style={{ height: 200, background: 'linear-gradient(180deg, #e3eafe 60%, #fff 100%)', borderRadius: 8 }} className="d-flex align-items-end justify-content-center">
+                <span className="text-muted">[Chart]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="card shadow-sm h-100">
+            <div className="card-body">
+              <div className="d-flex align-items-center mb-2">
+                <span className="fw-semibold">Lead Generation</span>
+                <span className="ms-auto text-success small"><i className="bi bi-dot"></i> Leads</span>
+              </div>
+              {/* Chart Placeholder */}
+              <div style={{ height: 200, background: 'linear-gradient(180deg, #e3fcec 60%, #fff 100%)', borderRadius: 8 }} className="d-flex align-items-end justify-content-center">
+                <span className="text-muted">[Chart]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="card shadow-sm mb-4">
+        <div className="card-header bg-white d-flex justify-content-between align-items-center">
+          <span className="fw-semibold">Recent Leads</span>
+          <a href="#" className="small text-primary">View All Leads</a>
+        </div>
+        <div className="table-responsive">
+          <table className="table align-middle mb-0">
+            <thead className="table-light">
+              <tr>
+                <th>Contact</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Value</th>
+                <th>Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div className="d-flex align-items-center">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar" className="rounded-circle me-2" width="40" height="40" />
+                    <div>
+                      <div className="fw-semibold">Sarah Johnson</div>
+                      <div className="text-muted small">sarah@techstart.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>TechStart Inc.</td>
+                <td><span className="badge bg-primary">new</span></td>
+                <td className="fw-semibold">$12,000</td>
+                <td>2 min ago</td>
+                <td>
+                  <button className="btn btn-light btn-sm me-1"><i className="bi bi-eye"></i></button>
+                  <button className="btn btn-light btn-sm"><i className="bi bi-three-dots"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {/* Chat Widget */}
+      <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 1050, width: 340, maxWidth: '90vw' }}>
+        <div className="card shadow-lg">
+          <div className="card-header bg-primary text-white py-2 px-3 d-flex align-items-center justify-content-between">
+            <span className="fw-semibold">Chat Support</span>
+            <span className="badge bg-light text-primary">Online</span>
+          </div>
+          <div className="card-body p-2" style={{ height: 260, overflowY: 'auto', background: '#f4f7fa' }}>
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`d-flex mb-2 ${msg.sender === 'user' ? 'justify-content-end' : 'justify-content-start'}`}>
+                <div className={`p-2 rounded-3 ${msg.sender === 'user' ? 'bg-primary text-white' : 'bg-light text-dark'}`} style={{ maxWidth: '80%' }}>
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+          <form className="card-footer d-flex p-2 gap-2 bg-white" onSubmit={handleSend} autoComplete="off">
+            <input
+              type="text"
+              className="form-control form-control-sm"
+              placeholder="Type your message..."
+              value={input}
+              onChange={e => setInput(e.target.value)}
+            />
+            <button className="btn btn-primary btn-sm" type="submit">
+              <i className="bi bi-send"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SellerDashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import Login from "./features/Auth/Login";
+import PageNotfound from './features/Auth/PageNotfound';
+// import Register from "./features/Auth/Register";
+// import ForgotPassword from './features/Auth/ForgotPassword';
+// import ResetPassword from './features/Auth/ResetPassword';
+import AdminRouters from './Routers/AdminRouters';
+import SellerRouters from './Routers/SellerRouters';
+import ProtectedRoute from "./features/Auth/ProtectedRoute";
+
+
+function App() {
+  return (
+    <>
+      <ToastContainer position="top-right" autoClose={3000}/>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* <Route path="/Signup" element={<Register />} />
+        <Route path="/forgotPassword" element={<ForgotPassword/>} />
+        <Route path="/resetPassword" element={<ResetPassword/>} /> */}
+        {/* Admin Routes */}
+        <Route path='/admin/*' element={<ProtectedRoute>
+          <AdminRouters />
+         </ProtectedRoute>} />
+        <Route path='/seller/*' element={<ProtectedRoute>
+          <SellerRouters/>
+        </ProtectedRoute>} />
+        <Route path='/*' element={
+          <PageNotfound/>
+        } />
+      </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
+    </>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";  
+import Nevbar from "./features/Layouts/Nevbar";
+import Shidebar from "./features/Layouts/Shidebar";
+import Dashboard from "./features/Admin/Dashboard";
+import AllUsers from "./features/Admin/UserManagement/AllUsers";
+import Buyers from "./features/Admin/UserManagement/Buyers";
+import Sellers from "./features/Admin/UserManagement/Sellers";
+import CouponManagement from "./features/Admin/Coupon/CouponManagement";
+import DomainManagement from "./features/Admin/Coupon/DomainManagement";
+import PaymentLogs from "./features/Admin/Payment/PaymentLogs";
+import AllPlans from "./features/Admin/Plans/AllPlans";
+import GeneralSettings from "./features/Admin/Settings/GeneralSettings";
+import Reportanalatics from "./features/Admin/Reports/Reportanalatics";
+
+
+import SellerDashboard from "./features/Seller/Dashboard/SellerDashboard";
+import LeadManager from "./features/Seller/Lead/LeadManager";
+import ProductCatalog from "./features/Seller/Product/ProductCatalog";
+function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleSidebarToggle = () => setSidebarOpen((open) => !open);
+  const handleSidebarClose = () => setSidebarOpen(false);
+  return (
+    <div className="d-flex" style={{ minHeight: "100vh", background: "#f7f9fb" }}>
+      <Shidebar show={sidebarOpen} onClose={handleSidebarClose} />
+      <div className="flex-grow-1">
+        <Nevbar onSidebarToggle={handleSidebarToggle} />
+          <Routes>
+            <Route path="/" element={<Dashboard/>} />
+            <Route path="/allUsers"element={<AllUsers/>} />
+            <Route path="/buyers"  element={<Buyers/>} />
+            <Route path="/sellers" element={<Sellers/>} />
+            <Route path="/CouponManagement" element={<CouponManagement/>} />
+            <Route path="/domain" element={<DomainManagement/>} />
+            <Route path="/Payment" element={<PaymentLogs/>} />
+            <Route path="/AllPlans" element={<AllPlans/>} />
+            <Route path="/reports" element={<Reportanalatics/>} />
+            <Route path="/settings" element={<GeneralSettings/>} />
+
+            <Route path="/Seller/Dashboard" element={<SellerDashboard/>} />
+            <Route path="/Seller/LeadManager" element={<LeadManager/>} />
+            <Route path="/Seller/project" element={<ProductCatalog/>} />
+            {/* 404 ‑‑ optional fallback */}
+            <Route path="*" element={<h2 className="p-4">Page not found</h2>} />
+          </Routes>
+      </div>
+    </div>
+  );
+}
+
+export default App;
